@@ -6,7 +6,8 @@ defmodule PhQuantifiedSelf.Repo.Migrations.CreateMealFoods do
       add :meal_id, references(:meals, on_delete: :nothing)
       add :food_id, references(:foods, on_delete: :nothing)
 
-      timestamps()
+      # these mess up put_assoc
+      # timestamps()
     end
 
     create index(:meal_foods, [:meal_id])

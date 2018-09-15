@@ -30,7 +30,13 @@ defmodule PhQuantifiedSelf.Meal do
     |> Repo.preload(:foods)
   end
 
+  # Why do the test here?
   def find(id) do
+    Meal
+    |> Repo.get(id)
+    |> Repo.preload(:foods)
+  end
+  def find_old(id) do
     if (Repo.get(Meal, id)) do
       Meal
       |> select([:id, :name])
@@ -51,13 +57,19 @@ defmodule PhQuantifiedSelf.Meal do
     |> Repo.delete()
   end
 
-  def assoc?(meal, food) do
-    assoc = Meal_Food
-    |> Repo.get_by(meal_id: meal.id, food_id: food.id)
-    if (assoc) do
-      true
-    else
-      false
-    end
+  # Two things I'd do differently here. First, layout. As you're assigning from
+  # a pipeline, I'd indent the body:
+  #
+  #     assoc = Meal_Food
+  #             |> Repo.get_by(meal_id: meal.id, food_id: food.id)
+  #
+  # Second, there's a trick to convert a value from truthy/falsy into actual
+  # `true` or `false`. You can do `!!value`, which negates it twice, but the
+  # first negation turns `nil`/`false` into `true` and anthing else into
+  # `false`. The second negation then gets the logic the right way around.
+  #
+  # So...
+   def assoc?(meal, food) do
+    !!(Meal_Food |> Repo.get_by(meal_id: meal.id, food_id: food.id))
   end
 end

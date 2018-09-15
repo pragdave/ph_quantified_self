@@ -10,7 +10,7 @@ mix run priv/repo/seeds.exs
 mix test
 mix phx.server
 ```
- 
+
 # Elixir version:
  ```
  1.4

@@ -6,8 +6,6 @@ defmodule PhQuantifiedSelf.Meal.Food do
   schema "meal_foods" do
     field :meal_id, :id
     field :food_id, :id
-
-    timestamps()
   end
 
   @doc false

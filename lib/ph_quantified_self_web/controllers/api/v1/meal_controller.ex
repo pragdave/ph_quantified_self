@@ -8,6 +8,9 @@ defmodule PhQuantifiedSelfWeb.Api.V1.MealController do
     json conn, Serializer.meals(meals)
   end
 
+  # unless you're trying to sanitize the parameter, you can skip the
+  # conversion here: Meal.find(3) and Meal.find("3") are the same
+
   def show(conn, params) do
     params["id"]
     {id, ""} = Integer.parse(params["id"])

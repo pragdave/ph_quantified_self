@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :ph_quantified_self, PhQuantifiedSelf.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "ph_quantified_self_dev",
+  username: "dave",
+  password: "",
+  database: "ph_qualified_self_dev",
   hostname: "localhost",
   pool_size: 10
